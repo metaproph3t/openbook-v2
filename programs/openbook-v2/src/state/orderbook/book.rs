@@ -79,6 +79,8 @@ impl<'a> Orderbook<'a> {
         let mut number_of_dropped_expired_orders = 0;
         let opposing_bookside = self.bookside_mut(other_side);
 
+        let a = 0;
+
         for best_opposing in opposing_bookside.iter_all_including_invalid(now_ts, oracle_price_lots)
         {
             if remaining_base_lots == 0 || remaining_quote_lots == 0 {
