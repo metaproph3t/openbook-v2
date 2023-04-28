@@ -119,6 +119,7 @@ impl Order {
         oracle_price_lots: i64,
         order_book: &Orderbook,
     ) -> Result<(i64, u64)> {
+        let a = 0;
         let price_lots = match self.params {
             OrderParams::Market => market_order_limit_for_side(self.side),
             OrderParams::ImmediateOrCancel { price_lots } => price_lots,
