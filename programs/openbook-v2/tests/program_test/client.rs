@@ -694,6 +694,7 @@ pub struct SweepFeesInstruction {
     pub market: Pubkey,
     pub quote_vault: Pubkey,
     pub receiver: Pubkey,
+    pub admin: TestKeypair,
 }
 #[async_trait::async_trait(?Send)]
 impl ClientInstruction for SweepFeesInstruction {
@@ -710,6 +711,7 @@ impl ClientInstruction for SweepFeesInstruction {
             market: self.market,
             quote_vault: self.quote_vault,
             receiver: self.receiver,
+            admin: self.admin.pubkey(),
             token_program: Token::id(),
             system_program: System::id(),
         };
@@ -719,7 +721,7 @@ impl ClientInstruction for SweepFeesInstruction {
     }
 
     fn signers(&self) -> Vec<TestKeypair> {
-        vec![]
+        vec![self.admin]
     }
 }
 

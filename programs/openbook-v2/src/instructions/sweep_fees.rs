@@ -7,11 +7,6 @@ use crate::accounts_ix::*;
 pub fn sweep_fees(ctx: Context<SweepFees>) -> Result<()> {
     let (market_index, market_bump, amount) = {
         let market = &mut ctx.accounts.market.load_mut()?;
-        // Enforce only admin can withdraw fees
-        require!(
-            market.admin == ctx.accounts.receiver.owner,
-            OpenBookError::InvalidFundsReceiver
-        );
 
         let amount = market.quote_fees_accrued;
         market.quote_fees_accrued = 0;

@@ -208,6 +208,7 @@ async fn test_fees_acrued() -> Result<(), TransportError> {
             market,
             quote_vault,
             receiver: admin_token_1,
+            admin,
         },
     )
     .await

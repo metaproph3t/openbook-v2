@@ -4,12 +4,12 @@ use anchor_spl::token::{Token, TokenAccount};
 
 #[derive(Accounts)]
 pub struct SweepFees<'info> {
-    #[account(mut)]
+    #[account(mut, has_one = admin)]
     pub market: AccountLoader<'info, Market>,
 
     #[account(mut)]
-    // Check in fn that market.admin == receiver.owner
     pub receiver: Account<'info, TokenAccount>,
+    pub admin: Signer<'info>,
 
     #[account(mut)]
     pub quote_vault: Account<'info, TokenAccount>,
